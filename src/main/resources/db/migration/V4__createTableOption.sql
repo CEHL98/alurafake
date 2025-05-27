@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS `Options` (
+    id BIGINT(20) NOT NULL AUTO_INCREMENT,
+    `option` VARCHAR(80) NOT NULL,
+    `answer` BOOLEAN NOT NULL DEFAULT FALSE,
+    task_id BIGINT(20) NOT NULL,
+    createdAt datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_option_task FOREIGN KEY (task_id) REFERENCES Task(id) ON DELETE CASCADE,
+    CONSTRAINT uk_option_task_option UNIQUE (task_id, `option`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
